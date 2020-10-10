@@ -5,7 +5,6 @@ const { registerValidation, loginValidation } = require('../validation')
 const bcrypt = require('bcryptjs')
 const { Router } = require('express')
 
-
 router.post('/register', async (req, res) => {
 
     // VALIDATE DATA
@@ -60,11 +59,13 @@ router.post('/login', async (req, res) => {
     if (!validPas) return res.status(400).send('Email or password is not correct')
 
     // CREATE AND ASIGN TOKEN
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
-    res.header('auth-token', token)
-
-    res.send('Logged in')
-
+    const token = jwt.sign({ username: user.username }, process.env.TOKEN_SECRET)
+    res.cookie('authtoken', token, {
+        maxAge: 32600,
+        httpOnly: true
+        // secure: true
+    })
+    res.json(token)
 })
 
 
