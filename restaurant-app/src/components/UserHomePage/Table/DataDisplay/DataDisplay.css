@@ -1,0 +1,26 @@
+.data-display {
+    display: flex;
+    align-self: flex-start;
+    height: 65vh;
+    width: 100%;
+    order: 1;
+}
+
+.list {
+    width: 90%;
+}
+
+.order {
+    display: inline-block;
+    width: 100%;
+    margin: 5px;
+}
+
+.price {
+    float: right;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+}

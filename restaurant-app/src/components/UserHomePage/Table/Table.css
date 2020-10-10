@@ -1,0 +1,16 @@
+.table-display {
+    display: flex;
+    max-height: 100vh;
+}
+
+.left-components {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.right-components {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}

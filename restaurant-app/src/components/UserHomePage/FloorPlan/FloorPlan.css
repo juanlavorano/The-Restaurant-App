@@ -1,0 +1,20 @@
+.container {
+    justify-content: space-around;
+    margin: auto ;
+}
+
+.table-row{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px auto;
+}
+
+.table {
+    width: 5vw;
+    height: 5vw;
+    
+}
+
+.table-hide {
+    visibility: hidden;
+}

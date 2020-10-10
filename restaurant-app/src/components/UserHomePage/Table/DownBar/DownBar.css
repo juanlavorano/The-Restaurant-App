@@ -1,0 +1,23 @@
+.down-bar {
+    display: flex;
+    background-color: #f0dddd;
+    width: 100%;
+    margin-left: auto;
+    align-self: flex-end;
+    height: 35vh;
+    flex-direction: column;
+    justify-content: space-around;
+    order: 2;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+.row button {
+    height: 60px;
+    width: 80px;
+}
