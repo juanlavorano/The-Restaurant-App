@@ -4,6 +4,7 @@
     height: 65vh;
     width: 100%;
     order: 1;
+    overflow: scroll;
 }
 
 .list {
