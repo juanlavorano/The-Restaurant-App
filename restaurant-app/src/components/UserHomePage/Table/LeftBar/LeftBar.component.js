@@ -1,35 +1,74 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './LeftBar.css'
+import { addOrder } from '../../../../actions/orders'
+import { selectDisplay } from '../../../../actions/table'
 
-export default class LeftBar extends Component {
+import menu from './FakeDatabase'
 
-    sendData = (e) => {
-        e.preventDefault()
-        this.props.onClick({
-            food: e.target.textContent,
-            price: `${Math.floor(Math.random() * 100) + 1}`
-        })
+export default function LeftBar() {
+    const dispatch = useDispatch()
+    const selectedType = state => state.table.type.type
+
+    const typeSelected = useSelector(selectedType)
+
+    const handleClick = (e) => {
+        dispatch(addOrder(e.target.textContent))
     }
-    // COMPONENTDIDMOUNT THAT TAKES DATA FROM DATABASE AND ASSIGN IT TO THE BUTTONS
-    // ITERATE TO CREAT THE NECESARY AMOUNT OF BUTTONS
 
-    render() {
+    const filterMenu = (e) => {
+        dispatch(selectDisplay(e.target.textContent))
+    }
+    // const filteredMenu = menu.filter(filterMenu)
 
-        return (
+
+    return (
+        <div>
             <div className='left-bar'>
                 <div className='column'>
-                    <button onClick={this.sendData}>Bife</button>
-                    <button onClick={this.sendData}>Bondiola</button>
-                    <button onClick={this.sendData}>Chori</button>
-                    <button onClick={this.sendData}>Morzilla</button>
+                    {menu.map(item => {
+                        if (item.type === typeSelected)
+                            return <button className='menu-item' key={item.id} onClick={handleClick}>{item.plate}</button>
+                    })}
                 </div>
-                <div className='column'>
-                    <button onClick={this.sendData}>Pollo al espiedo</button>
-                    <button onClick={this.sendData}>Matambre</button>
-                    <button onClick={this.sendData}>Vacio</button>
-                    <button onClick={this.sendData}>Asado</button>
+
+            </div>
+            <div className='menu'>
+                <div className='row'>
+                    <button onClick={filterMenu}>Starter</button>
+                    <button onClick={filterMenu}>Main</button>
+                </div>
+                <div className='row'>
+                    <button onClick={filterMenu}>Dessert</button>
+                    <button onClick={filterMenu}>Drink</button>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
+
+
+{/* <div className='left-bar'>
+<div className='column'>
+    {menu.map(item => {
+        return <button className='menu-item' key={item.id} onClick={handleClick}>{item.plate}</button>
+    })}
+</div>
+
+</div> */}
+
+
+ // <div className='left-bar'>
+        //     <div className='column'>
+        //         <button onClick={handleClick}>Bife</button>
+        //         <button onClick={handleClick}>Bondiola</button>
+        //         <button onClick={handleClick}>Chori</button>
+        //         <button onClick={handleClick}>Morcilla</button>
+        //     </div>
+        //     <div className='column'>
+        //         <button onClick={handleClick}>Pollo al espiedo</button>
+        //         <button onClick={handleClick}>Matambre</button>
+        //         <button onClick={handleClick}>Vacio</button>
+        //         <button onClick={handleClick}>Asado</button>
+        //     </div>
+        // </div>

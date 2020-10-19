@@ -1,11 +1,14 @@
 import React from 'react'
 import './FloorPlan.css'
+import { useDispatch } from 'react-redux'
+import { clearDispaly } from '../../../actions/table'
 
-function FloorPlan(props) {
-
+function FloorPlan() {
+    const dispatch = useDispatch()
     const handleTableClick = (e) => {
         const tableNumber = e.target.textContent
         const path = `${window.location}/table-${tableNumber}`
+        dispatch(clearDispaly())
         window.location.assign(path)
     }
 
@@ -13,22 +16,22 @@ function FloorPlan(props) {
         <div className='container'>
             <div className='table-row'>
                 <button onClick={handleTableClick} className='table'>1</button>
-                <button className='table'>2</button>
-                <button className='table'>3</button>
-                <button className='table'>4</button>
+                <button onClick={handleTableClick} className='table'>2</button>
+                <button onClick={handleTableClick} className='table'>3</button>
+                <button onClick={handleTableClick} className='table'>4</button>
 
             </div>
             <div className='table-row'>
-                <button className='table'>5</button>
-                <button className='table'>6</button>
-                <button className='table'>7</button>
-                <button className='table'>8</button>
+                <button onClick={handleTableClick} className='table'>5</button>
+                <button onClick={handleTableClick} className='table'>6</button>
+                <button onClick={handleTableClick} className='table'>7</button>
+                <button onClick={handleTableClick} className='table'>8</button>
             </div>
             <div className='table-row'>
-                <button className='table'>9</button>
-                <button className='table'>10</button>
-                <button className='table'>11</button>
-                <button className='table'>12</button>
+                <button onClick={handleTableClick} className='table'>9</button>
+                <button onClick={handleTableClick} className='table'>10</button>
+                <button onClick={handleTableClick} className='table'>11</button>
+                <button onClick={handleTableClick} className='table'>12</button>
             </div>
         </div>
     )

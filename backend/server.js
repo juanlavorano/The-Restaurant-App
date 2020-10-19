@@ -46,7 +46,7 @@ app.get('/api/get/user', (req, res) => {
 
 //TOKEN VERIFICATION
 app.get('/api/user/verify', (req, res) => {
-    const token = req.header('authtoken')
+    const token = req.header('auth_token')
     if (!token) return res.status(401).send('Access denied')
 
     try {

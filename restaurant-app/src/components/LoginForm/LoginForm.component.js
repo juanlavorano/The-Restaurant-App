@@ -1,71 +1,51 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import cookie from 'js-cookie'
+import { useDispatch } from 'react-redux'
+import { logIn } from '../../actions/user'
 
+export default function LoginForm(props) {
 
-export default class LoginForm extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            id: '',
-            // authenticated: false
-        }
-        this.changeUsername = this.changeUsername.bind(this)
-        this.changePassword = this.changePassword.bind(this)
-    }
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [id, setId] = useState('')
 
-    changeUsername(e) {
-        this.setState({
-            username: e.target.value
-        })
-    }
+    const dispatch = useDispatch()
 
-    changePassword(e) {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault()
-
-        this.setState({
-            username: this.state.username,
-            password: this.state.password,
-        })
-
-        axios.post(`http://localhost:5000/api/user/login`, { username: this.state.username, password: this.state.password })
+        axios.post(`http://localhost:5000/api/user/login`, { username, password })
             .then(res => {
                 cookie.set('token', res.data)
             })
-            .then(res => axios.get('http://localhost:5000/api/get/user')
-                .then(res => {
-                    res.data.forEach(user => {
-                        if (user.username === this.state.username) {
-                            this.setState({ user: user.username })
-                        }
-                    })
-                }))
+            .then(res => dispatch(logIn(username)))
             .then(res => {
-                this.props.history.push(`/home/${this.state.username}`)
+                props.history.push(`/home/${username}`)
             })
             .catch(err => console.log(err))
 
     }
 
-    render() {
-        return (
-            <div className='container'>
-                <form className='loginForm' onSubmit={this.handleSubmit}>
-                    <h2 className='loginTitle formItem'>Login</h2>
-                    <input className='formItem' type='text' value={this.state.username} id='username' onChange={this.changeUsername} placeholder='Username' size='40' /> <br />
-                    <input className='formItem' type='password' value={this.state.password} id='password' onChange={this.changePassword} placeholder='Password' size='40' /> <br />
-                    <button className='formItem' name='Login' type='submit' >Login</button>
-                </form>
-            </div>
-        )
-    }
-
+    return (
+        <div className='container'>
+            <form className='loginForm' onSubmit={handleSubmit}>
+                <h2 className='loginTitle formItem'>Login</h2>
+                <input className='formItem' type='text' value={username || ''} onChange={e => setUsername(e.target.value)} placeholder='Username' size='40' /> <br />
+                <input className='formItem' type='password' value={password || ''} onChange={e => setPassword(e.target.value)} placeholder='Password' size='40' /> <br />
+                <button className='formItem' name='Login' type='submit' >Login</button>
+            </form>
+        </div>
+    )
 }
+
+
+// const mapStateToProps = state => {
+//     return {
+//         username: state.username,
+//         password: state.password,
+//         id: state.id
+//     }
+// }
+
+// export default connect(mapStateToProps)(LoginForm)

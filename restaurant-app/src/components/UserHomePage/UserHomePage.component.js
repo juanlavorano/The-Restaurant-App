@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import FloorPlan from './FloorPlan/FloorPlan.component'
+import { logOut } from '../../actions/user'
+import { useDispatch, useSelector } from 'react-redux'
 
+export default function UserHomePage() {
 
-export default class UserHomePage extends Component {
-
-    render() {
-        return (
-            <FloorPlan />
-        )
+    const dispatch = useDispatch()
+    const handleClick = () => {
+        dispatch(logOut())
     }
 
+    return (
+        <div>
+            <button onClick={handleClick}>Logout</button>
+            <FloorPlan />
+        </div>
+
+    )
 }

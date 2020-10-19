@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
 
     // CREATE AND ASIGN TOKEN
     const token = jwt.sign({ username: user.username }, process.env.TOKEN_SECRET)
-    res.cookie('authtoken', token, {
+    res.cookie('auth_token', token, {
         maxAge: 32600,
         httpOnly: true
         // secure: true

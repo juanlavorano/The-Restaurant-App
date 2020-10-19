@@ -20,8 +20,8 @@ class Router extends Component {
 
                     </Route>
                     <Route path='/register' component={RegisterForm}></Route>
-                    <PrivateRoute exact path='/home/:id' component={UserHomePage} />
-                    <PrivateRoute exact path='/home/:id/:tablenumber' component={Table} />
+                    <PrivateRoute exact path='/home/:user' component={UserHomePage} />
+                    <PrivateRoute exact path='/home/:user/:tablenumber' component={Table} />
 
                     <Route component={Error}></Route>
                 </Switch>
