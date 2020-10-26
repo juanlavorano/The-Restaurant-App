@@ -2,6 +2,7 @@ import React from 'react'
 import './FloorPlan.css'
 import { useDispatch } from 'react-redux'
 import { clearDispaly } from '../../../actions/table'
+import { resetAmount } from '../../../actions/numbers'
 
 function FloorPlan() {
     const dispatch = useDispatch()
@@ -9,6 +10,7 @@ function FloorPlan() {
         const tableNumber = e.target.textContent
         const path = `${window.location}/table-${tableNumber}`
         dispatch(clearDispaly())
+        dispatch(resetAmount())
         window.location.assign(path)
     }
 

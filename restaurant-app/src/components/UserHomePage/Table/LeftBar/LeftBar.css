@@ -12,14 +12,14 @@
     width: 35vw;
     margin-left: auto;
     align-self: flex-end;
-    min-height: 35vh;
+    height: 40vh;
     flex-direction: column;
     justify-content: space-around;
 }
 .column {
     display: inline;
     width: 100vw;
-    height: 65vh;
+    height: 60vh;
 }
 .menu-item{
     width: 40%;

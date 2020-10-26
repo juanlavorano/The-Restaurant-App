@@ -1,7 +1,7 @@
 import React from 'react'
 import FloorPlan from './FloorPlan/FloorPlan.component'
 import { logOut } from '../../actions/user'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export default function UserHomePage() {
 

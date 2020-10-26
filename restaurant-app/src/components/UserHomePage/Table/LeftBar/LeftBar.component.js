@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './LeftBar.css'
 import { addOrder } from '../../../../actions/orders'
+import { resetAmount } from '../../../../actions/numbers'
 import { selectDisplay } from '../../../../actions/table'
 
 import menu from './FakeDatabase'
@@ -9,18 +10,18 @@ import menu from './FakeDatabase'
 export default function LeftBar() {
     const dispatch = useDispatch()
     const selectedType = state => state.table.type.type
+    const currentAmount = useSelector(state => state.number.number)
 
     const typeSelected = useSelector(selectedType)
 
     const handleClick = (e) => {
-        dispatch(addOrder(e.target.textContent))
+        dispatch(addOrder(e.target.textContent, currentAmount))
+        dispatch(resetAmount())
     }
 
     const filterMenu = (e) => {
         dispatch(selectDisplay(e.target.textContent))
     }
-    // const filteredMenu = menu.filter(filterMenu)
-
 
     return (
         <div>
@@ -31,7 +32,6 @@ export default function LeftBar() {
                             return <button className='menu-item' key={item.id} onClick={handleClick}>{item.plate}</button>
                     })}
                 </div>
-
             </div>
             <div className='menu'>
                 <div className='row'>
@@ -46,29 +46,3 @@ export default function LeftBar() {
         </div>
     )
 }
-
-
-{/* <div className='left-bar'>
-<div className='column'>
-    {menu.map(item => {
-        return <button className='menu-item' key={item.id} onClick={handleClick}>{item.plate}</button>
-    })}
-</div>
-
-</div> */}
-
-
- // <div className='left-bar'>
-        //     <div className='column'>
-        //         <button onClick={handleClick}>Bife</button>
-        //         <button onClick={handleClick}>Bondiola</button>
-        //         <button onClick={handleClick}>Chori</button>
-        //         <button onClick={handleClick}>Morcilla</button>
-        //     </div>
-        //     <div className='column'>
-        //         <button onClick={handleClick}>Pollo al espiedo</button>
-        //         <button onClick={handleClick}>Matambre</button>
-        //         <button onClick={handleClick}>Vacio</button>
-        //         <button onClick={handleClick}>Asado</button>
-        //     </div>
-        // </div>

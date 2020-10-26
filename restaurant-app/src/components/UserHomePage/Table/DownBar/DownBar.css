@@ -1,10 +1,12 @@
 .down-bar {
+    position: absolute;
+    bottom: 0;
     display: flex;
     background-color: #f0dddd;
     width: 100%;
     margin-left: auto;
     align-self: flex-end;
-    height: 35vh;
+    height: 40vh;
     flex-direction: column;
     justify-content: space-around;
     order: 2;

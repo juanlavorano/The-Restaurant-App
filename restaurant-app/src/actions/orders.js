@@ -1,7 +1,8 @@
-const addOrder = (data) => {
+const addOrder = (data, number) => {
     return {
         type: 'ITEM_ADDED',
         payload: {
+            amount: number,
             food: data,
             price: Math.floor((Math.random() * 100) + 1)
         }

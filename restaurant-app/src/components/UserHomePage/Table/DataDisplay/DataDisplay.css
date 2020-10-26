@@ -1,0 +1,58 @@
+.left-components {
+    position: relative;
+}
+.data-display {
+    display: flex;
+    align-self: flex-start;
+    height: 55vh;
+    width: 100%;
+    order: 1;
+    overflow: scroll;
+}
+
+.list {
+    position: relative;
+    width: 100%;
+}
+
+/* ORDER */
+.order {
+    display: inline-block;
+    width: 90%;
+}
+
+.price {
+    float: right;
+}
+
+.amount {
+    margin: auto 10%;
+}
+
+ul {
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* ORDER */
+
+.totalDiv {
+    position: absolute;
+    bottom: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+}
+
+.totalDiv p {
+    border: 2px solid rgb(72, 149, 217);
+}
+
+.total {
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+}
