@@ -62,7 +62,7 @@ export default function LoginForm(props) {
                     <FaLock className='icon' />
                     <input className='formItem' type='password' value={password || ''} onChange={e => setPassword(e.target.value)} placeholder='Password' size='40' />
                 </div> <br />
-                <div className='login-btn-line'><button name='Login' type='submit'>Log in</button><a>Forgot password?</a></div>
+                <div className='login-btn-line'><button name='Login' type='submit'>Log in</button></div>
             </form>
         </div>
     )

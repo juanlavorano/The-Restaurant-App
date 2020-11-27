@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './DownBar.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { addAmount, resetAmount } from '../../../../actions/numbers'
+import Modal from '../Modal/Modal.component'
 
 export default function DownBar() {
     const user = useSelector(state => state.user.user)
     const currentNumber = useSelector(state => state.number.number)
     const dispatch = useDispatch()
+    const [isOpen, openModal] = useState(false)
 
     const handleBack = (e) => {
         e.preventDefault()
@@ -20,7 +22,10 @@ export default function DownBar() {
 
     const handleNumber = (e) => {
         dispatch(addAmount(currentNumber + e.target.textContent))
+    }
 
+    const handlePay = () => {
+        openModal(true)
     }
 
     return (
@@ -31,7 +36,7 @@ export default function DownBar() {
                     <button onClick={handleNumber}>2</button>
                     <button onClick={handleNumber}>3</button>
                 </div>
-                <button>Button</button>
+                <button onClick={handlePay}>Pay</button>
                 <button>Button</button>
             </div>
             <div className='row'>
@@ -61,6 +66,7 @@ export default function DownBar() {
                 <button onClick={handleClear}>Clear</button>
                 <button onClick={handleBack}>Back</button>
             </div>
+            <Modal open={isOpen} onClose={() => openModal(false)} />
         </div>
     )
 }
